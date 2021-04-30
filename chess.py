@@ -58,16 +58,29 @@ class Player:
         self.AI = AI
 
     def move(self):
-        query = input("enter your move")
+        query = input("enter your move: ")
         query_test = query.split()
         if len(query_test) == 1:
             query = query.split(",")
         else:
             query = query_test
 
-        field.data[query[0]] = "  "
-        field.data[query[1]] = "kk"
-        field.show()
+        if field.data[query[0]] != "  ":
+            piece_object = Pieces.character_dict.get(field.data[query[0]])
+            print(piece_object)
+            if piece_object.validate(
+                    query[1]):  # todo: add other verifications such as is that slot free or it's way clear or not
+                field.data[query[0]] = "  "
+                field.data[query[1]] = piece_object.character
+                piece_object.location = query[1]
+                return True
+            else:
+                return False
+        else:#todo: when it is occupied it should fight
+            pass
+        # field.data[query[0]] = "  "
+        # field.data[query[1]] = "kk"
+        # field.show()
 
 
 class Pieces:
@@ -79,6 +92,10 @@ class Pieces:
         self.location = location
         self.character = character
         Pieces.character_dict[character] = self
+        field.data[location] = character
+
+    def __repr__(self):
+        return f"it is character {self.character}"
 
 
 class King(Pieces):
@@ -123,7 +140,8 @@ class Queen(Pieces):
         valid_movements += column_move
         valid_movements = set(valid_movements)
         valid_movements.discard(self.location)
-        print(valid_movements)
+        return True if move in valid_movements else False
+        # print(valid_movements)
 
 
 Sina = Player("sina", True)
@@ -133,8 +151,10 @@ field = Field(False)
 queen_black = Queen(False, "d8", "QQ")
 # print(king_white.validate("g8"))
 queen_black.validate("ashgd")
+for i in range(4):
+    field.show()
+    Sina.move()
 # Sina.move()
 # Sina.move()
 # Sina.move()
-# Sina.move()
-field.show()
+# field.show()
