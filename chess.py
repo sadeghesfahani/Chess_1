@@ -2,7 +2,7 @@ class Field:
     column = "abcdefgh"
     row = "12345678"
 
-    def __init__(self, AI=False):
+    def __init__(self, ai=False):
         self.data = dict()
         for x in Field.row:
             for y in Field.column:
@@ -10,7 +10,8 @@ class Field:
 
     def check_movement(self, move, player):
         # [a1,b2,KK]
-        self.data[move[0]]
+        #self.data[move[0]]
+        pass
 
     def show(self):
         counter = 0
@@ -52,10 +53,10 @@ class Field:
 
 
 class Player:
-    def __init__(self, name, white, AI=False):
+    def __init__(self, name, white, ai=False):
         self.name = name
         self.white = white
-        self.AI = AI
+        self.ai = ai
 
     def move(self):
         query = input("enter your move: ")
@@ -76,7 +77,7 @@ class Player:
                 return True
             else:
                 return False
-        else:#todo: when it is occupied it should fight
+        else:  #todo: when it is occupied it should fight
             pass
         # field.data[query[0]] = "  "
         # field.data[query[1]] = "kk"
