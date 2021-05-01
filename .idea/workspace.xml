@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="bb52db2c-e9a5-40c6-9c82-4a7ac84e1439" name="Default Changelist" comment="movement (cross) has been developed">
+=======
+    <list default="true" id="bb52db2c-e9a5-40c6-9c82-4a7ac84e1439" name="Default Changelist" comment="Project splited to libraries">
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess.py" beforeDir="false" afterPath="$PROJECT_DIR$/chess.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,11 @@
       <option name="presentableId" value="Default" />
       <updated>1619806104436</updated>
       <workItem from="1619806118269" duration="1427000" />
+<<<<<<< Updated upstream
       <workItem from="1619842453041" duration="5388000" />
+=======
+      <workItem from="1619842453041" duration="9057000" />
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="movement (cross) has been developed">
       <created>1619847328607</created>
@@ -75,7 +82,32 @@
       <option name="project" value="LOCAL" />
       <updated>1619847328607</updated>
     </task>
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="2" />
+=======
+    <task id="LOCAL-00002" summary="movement cross and multiply with depth consideration has been created">
+      <created>1619848755368</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619848755368</updated>
+    </task>
+    <task id="LOCAL-00003" summary="pieces has been override by new methods in Piece (their parent)">
+      <created>1619849529810</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619849529810</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Project splited to libraries">
+      <created>1619850998973</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619850998973</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,7 +127,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="movement (cross) has been developed" />
+<<<<<<< Updated upstream
     <option name="LAST_COMMIT_MESSAGE" value="movement (cross) has been developed" />
+=======
+    <MESSAGE value="movement cross and multiply with depth consideration has been created" />
+    <MESSAGE value="pieces has been override by new methods in Piece (their parent)" />
+    <MESSAGE value="Project splited to libraries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project splited to libraries" />
+>>>>>>> Stashed changes
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Chess$chess.coverage" NAME="chess Coverage Results" MODIFIED="1619848615672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
