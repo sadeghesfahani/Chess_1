@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb52db2c-e9a5-40c6-9c82-4a7ac84e1439" name="Default Changelist" comment="movement (cross) has been developed">
+    <list default="true" id="bb52db2c-e9a5-40c6-9c82-4a7ac84e1439" name="Default Changelist" comment="movement cross and multiply with depth consideration has been created">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess.py" beforeDir="false" afterPath="$PROJECT_DIR$/chess.py" afterDir="false" />
     </list>
@@ -11,6 +11,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rtrD6PRb4yUwe6DvEtIqPtXXZX" />
@@ -66,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619806104436</updated>
       <workItem from="1619806118269" duration="1427000" />
-      <workItem from="1619842453041" duration="5388000" />
+      <workItem from="1619842453041" duration="6233000" />
     </task>
     <task id="LOCAL-00001" summary="movement (cross) has been developed">
       <created>1619847328607</created>
@@ -75,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619847328607</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="movement cross and multiply with depth consideration has been created">
+      <created>1619848755368</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619848755368</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,9 +107,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="movement (cross) has been developed" />
-    <option name="LAST_COMMIT_MESSAGE" value="movement (cross) has been developed" />
+    <MESSAGE value="movement cross and multiply with depth consideration has been created" />
+    <option name="LAST_COMMIT_MESSAGE" value="movement cross and multiply with depth consideration has been created" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Chess$chess.coverage" NAME="chess Coverage Results" MODIFIED="1619848615672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Chess$chess.coverage" NAME="chess Coverage Results" MODIFIED="1619848690676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

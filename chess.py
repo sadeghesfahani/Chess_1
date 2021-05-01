@@ -53,10 +53,12 @@ class Field:
 
 
 class Player:
+    players=dict
     def __init__(self, name, white, ai=False):
         self.name = name
         self.white = white
         self.ai = ai
+        Player.players[white]=self
 
     def move(self):
         query = input("enter your move: ")
@@ -153,7 +155,7 @@ class Pieces:
                             break
                     else:
                         overal_possible_movements.append(posible_move)
-
+            return overal_possible_movements
         elif pattern == 2:
             # multiply
             for I in range(1, depth):
@@ -196,7 +198,7 @@ class Pieces:
                         overal_possible_movements.append(posible_move)
 
             for I in range(1, depth):
-                if column_index - I >= 0 and row_index + I <= 7 :
+                if column_index - I >= 0 and row_index + I <= 7:
                     posible_move = f"{Field.column[column_index - I]}{Field.row[row_index + I]}"
                     if field_to_check.data[posible_move] != "  ":
                         ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
@@ -207,50 +209,30 @@ class Pieces:
                             break
                     else:
                         overal_possible_movements.append(posible_move)
-        print(overal_possible_movements)
+            return overal_possible_movements
+        elif pattern == 3:
+            cross = self.check_possible_movements(1, player, field_to_check, depth)
+            multiply = self.check_possible_movements(2, player, field_to_check, depth)
+            return cross + multiply
+
 
 class King(Pieces):
     def validate(self, movement):
-        valid_movements = list()
-        column = self.location[0]
-        row = self.location[1]
-        index_column = Field.column.find(column)
-        index_row = Field.row.find(row)
-        for column in [-1, 0, 1]:
-            for row in [-1, 0, 1]:
-                if (index_column + column >= 0 and index_row + row >= 0) and (
-                        index_column + column <= 9 and index_row + row <= 9):
-                    try:
-                        valid_movements.append(f"{Field.column[index_column + column]}{Field.row[index_row + row]}")
-                    except:
-                        pass
-        valid_movements = set(valid_movements)
-        valid_movements.discard(self.location)
+        player=Player.players.get(True)
+        if not player.ai:
+            valid_movements=self.check_possible_movements(3,player,field,1)
+        else:
+            valid_movements = self.check_possible_movements(3, player, field_ai, 1)
         return True if movement in valid_movements else False
 
 
 class Queen(Pieces):
     def validate(self, move):
-        valid_movements = list()
-        column = self.location[0]
-        row = self.location[1]
-        index_column = Field.column.find(column)
-        index_row = Field.row.find(row)
-        row_move = [f"{self.location[0]}{x}" for x in range(1, 9)]
-        column_move = [f"{x}{self.location[1]}" for x in "abcdefgh"]
-        for oprator in range(9):
-            if index_column + oprator <= 7 and index_row + oprator <= 7:
-                valid_movements.append(f"{Field.column[index_column + oprator]}{Field.row[index_row + oprator]}")
-            if index_column - oprator >= 0 and index_row - oprator >= 0:
-                valid_movements.append(f"{Field.column[index_column - oprator]}{Field.row[index_row - oprator]}")
-            if index_column + oprator <= 7 and index_row - oprator >= 0:
-                valid_movements.append(f"{Field.column[index_column + oprator]}{Field.row[index_row - oprator]}")
-            if index_column - oprator >= 0 and index_row + oprator <= 7:
-                valid_movements.append(f"{Field.column[index_column - oprator]}{Field.row[index_row + oprator]}")
-        valid_movements += row_move
-        valid_movements += column_move
-        valid_movements = set(valid_movements)
-        valid_movements.discard(self.location)
+        player = Player.players.get(True)
+        if not player.ai:
+            valid_movements = self.check_possible_movements(3, player, field)
+        else:
+            valid_movements = self.check_possible_movements(3, player, field_ai)
         return True if move in valid_movements else False
         # print(valid_movements)
 
@@ -258,6 +240,7 @@ class Queen(Pieces):
 sina = Player("sina", False)
 
 field = Field(False)
+field_ai=Field(True)
 # king_white = King(True, "h8", "KK")
 queen_black = Queen(False, "d8", "QQ")
 queen_black_1 = Queen(False, "b8", "QT")
