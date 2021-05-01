@@ -10,7 +10,7 @@ class Field:
 
     def check_movement(self, move, player):
         # [a1,b2,KK]
-        #self.data[move[0]]
+        # self.data[move[0]]
         pass
 
     def show(self):
@@ -77,11 +77,8 @@ class Player:
                 return True
             else:
                 return False
-        else:  #todo: when it is occupied it should fight
+        else:  # todo: when it is occupied it should fight
             pass
-        # field.data[query[0]] = "  "
-        # field.data[query[1]] = "kk"
-        # field.show()
 
 
 class Pieces:
@@ -98,6 +95,67 @@ class Pieces:
     def __repr__(self):
         return f"it is character {self.character}"
 
+    def check_possible_movements(self, pattern, player, field_to_check):
+        # patterns:cross=1,multiple=2,full=3,complex=4,cross_forward=5
+        overal_possible_movements = list()
+        if pattern == 1:  # cross
+
+            # set initial needed properties
+            column_index = Field.column.find(self.location[0])
+            row_index = Field.row.find((self.location[1]))
+            # check right line
+            for I in range(1, 9):
+                if column_index + I <= 7:
+                    posible_move = f"{Field.column[column_index + I]}{self.location[1]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+            # check left line
+            for I in range(1, 9):
+                if column_index - I >= 0:
+                    posible_move = f"{Field.column[column_index - I]}{self.location[1]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+            # check up line
+            for I in range(1, 9):
+                if row_index + I <= 7:
+                    posible_move = f"{self.location[0]}{Field.row[row_index + I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+            # check down line
+            for I in range(1, 9):
+                if row_index - I >= 0:
+                    posible_move = f"{self.location[0]}{Field.row[row_index - I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+            print(overal_possible_movements)
 
 class King(Pieces):
     def validate(self, movement):
@@ -145,16 +203,18 @@ class Queen(Pieces):
         # print(valid_movements)
 
 
-Sina = Player("sina", True)
+sina = Player("sina", False)
 
 field = Field(False)
 # king_white = King(True, "h8", "KK")
 queen_black = Queen(False, "d8", "QQ")
+queen_black_1 = Queen(False, "b8", "QT")
+queen_black_2 = Queen(False, "d4", "QT")
 # print(king_white.validate("g8"))
-queen_black.validate("ashgd")
-for i in range(4):
-    field.show()
-    Sina.move()
+queen_black.check_possible_movements(1, sina, field)
+# for i in range(4):
+#    field.show()
+#    Sina.move()
 # Sina.move()
 # Sina.move()
 # Sina.move()
