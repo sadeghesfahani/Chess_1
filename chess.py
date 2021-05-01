@@ -95,16 +95,14 @@ class Pieces:
     def __repr__(self):
         return f"it is character {self.character}"
 
-    def check_possible_movements(self, pattern, player, field_to_check):
+    def check_possible_movements(self, pattern, player, field_to_check, depth=9):
         # patterns:cross=1,multiple=2,full=3,complex=4,cross_forward=5
         overal_possible_movements = list()
+        column_index = Field.column.find(self.location[0])
+        row_index = Field.row.find((self.location[1]))
         if pattern == 1:  # cross
-
-            # set initial needed properties
-            column_index = Field.column.find(self.location[0])
-            row_index = Field.row.find((self.location[1]))
             # check right line
-            for I in range(1, 9):
+            for I in range(1, depth):
                 if column_index + I <= 7:
                     posible_move = f"{Field.column[column_index + I]}{self.location[1]}"
                     if field_to_check.data[posible_move] != "  ":
@@ -117,7 +115,7 @@ class Pieces:
                     else:
                         overal_possible_movements.append(posible_move)
             # check left line
-            for I in range(1, 9):
+            for I in range(1, depth):
                 if column_index - I >= 0:
                     posible_move = f"{Field.column[column_index - I]}{self.location[1]}"
                     if field_to_check.data[posible_move] != "  ":
@@ -130,7 +128,7 @@ class Pieces:
                     else:
                         overal_possible_movements.append(posible_move)
             # check up line
-            for I in range(1, 9):
+            for I in range(1, depth):
                 if row_index + I <= 7:
                     posible_move = f"{self.location[0]}{Field.row[row_index + I]}"
                     if field_to_check.data[posible_move] != "  ":
@@ -143,7 +141,7 @@ class Pieces:
                     else:
                         overal_possible_movements.append(posible_move)
             # check down line
-            for I in range(1, 9):
+            for I in range(1, depth):
                 if row_index - I >= 0:
                     posible_move = f"{self.location[0]}{Field.row[row_index - I]}"
                     if field_to_check.data[posible_move] != "  ":
@@ -155,7 +153,61 @@ class Pieces:
                             break
                     else:
                         overal_possible_movements.append(posible_move)
-            print(overal_possible_movements)
+
+        elif pattern == 2:
+            # multiply
+            for I in range(1, depth):
+                if column_index + I <= 7 and row_index + I <= 7:
+                    posible_move = f"{Field.column[column_index + I]}{Field.row[row_index + I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+
+            for I in range(1, depth):
+                if column_index + I <= 7 and row_index - I >= 0:
+                    posible_move = f"{Field.column[column_index + I]}{Field.row[row_index - I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+
+            for I in range(1, depth):
+                if column_index - I >= 0 and row_index - I >= 0:
+                    posible_move = f"{Field.column[column_index - I]}{Field.row[row_index - I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+
+            for I in range(1, depth):
+                if column_index - I >= 0 and row_index + I <= 7 :
+                    posible_move = f"{Field.column[column_index - I]}{Field.row[row_index + I]}"
+                    if field_to_check.data[posible_move] != "  ":
+                        ended_with_piece = Pieces.character_dict.get(field_to_check.data[posible_move])
+                        if ended_with_piece.white == player.white:
+                            break
+                        else:
+                            overal_possible_movements.append(posible_move)
+                            break
+                    else:
+                        overal_possible_movements.append(posible_move)
+        print(overal_possible_movements)
 
 class King(Pieces):
     def validate(self, movement):
@@ -209,9 +261,9 @@ field = Field(False)
 # king_white = King(True, "h8", "KK")
 queen_black = Queen(False, "d8", "QQ")
 queen_black_1 = Queen(False, "b8", "QT")
-queen_black_2 = Queen(False, "d4", "QT")
+queen_black_2 = Queen(False, "b6", "QT")
 # print(king_white.validate("g8"))
-queen_black.check_possible_movements(1, sina, field)
+queen_black.check_possible_movements(2, sina, field)
 # for i in range(4):
 #    field.show()
 #    Sina.move()
